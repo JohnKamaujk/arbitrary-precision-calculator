@@ -47,7 +47,7 @@ Type commands in the REPL like:
     ```
 
 - Factorial:
-    ``bash
+    ```bash
     factorial 20
     ```
 
