@@ -69,4 +69,5 @@ This project is licensed under the MIT License.
 For questions or feedback, feel free to reach out:
 
 GitHub: JohnKamaujk
+
 Email: johnjkkamau@gmail.com
