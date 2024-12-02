@@ -1,6 +1,7 @@
 import * as readline from "readline";
 import { add } from "./operations/add";
 import { subtract } from "./operations/subtract";
+import { multiply } from "./operations/multiply";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -63,6 +64,11 @@ function processInput(input: string): string {
         throw new Error("Subtract operation requires exactly 2 arguments.");
       }
       return subtract(args[0], args[1]);
+    case "multiply":
+      if (args.length !== 2) {
+        throw new Error("Multiply operation requires exactly 2 arguments.");
+      }
+      return multiply(args[0], args[1]);
     default:
       throw new Error(
         "Unknown command. Supported commands: add, subtract, multiply, etc."
