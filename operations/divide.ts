@@ -1,3 +1,5 @@
+import { subtract } from "./subtract";
+
 export function divide(dividend: string, divisor: string): string {
   if (divisor === "0") {
     throw new Error("Division by zero is undefined");
@@ -29,7 +31,7 @@ export function divide(dividend: string, divisor: string): string {
 
     let count = 0;
     while (compareStrings(remainder, divisor) >= 0) {
-      remainder = subtractStrings(remainder, divisor);
+      remainder = subtract(remainder, divisor);
       count++;
     }
 
@@ -60,23 +62,23 @@ function compareStrings(a: string, b: string): number {
 }
 
 
-function subtractStrings(a: string, b: string): string {
-  let result = "";
-  let carry = 0;
+// function subtractStrings(a: string, b: string): string {
+//   let result = "";
+//   let carry = 0;
 
-  while (a.length < b.length) a = "0" + a;
-  while (b.length < a.length) b = "0" + b;
+//   while (a.length < b.length) a = "0" + a;
+//   while (b.length < a.length) b = "0" + b;
 
-  for (let i = a.length - 1; i >= 0; i--) {
-    let diff = parseInt(a[i], 10) - parseInt(b[i], 10) - carry;
-    if (diff < 0) {
-      diff += 10;
-      carry = 1;
-    } else {
-      carry = 0;
-    }
-    result = diff.toString() + result;
-  }
+//   for (let i = a.length - 1; i >= 0; i--) {
+//     let diff = parseInt(a[i], 10) - parseInt(b[i], 10) - carry;
+//     if (diff < 0) {
+//       diff += 10;
+//       carry = 1;
+//     } else {
+//       carry = 0;
+//     }
+//     result = diff.toString() + result;
+//   }
 
-  return result.replace(/^0+/, "") || "0";
-}
+//   return result.replace(/^0+/, "") || "0";
+// }
