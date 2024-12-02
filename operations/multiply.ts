@@ -12,20 +12,23 @@ export function multiply(a: string, b: string): string {
   a = a.replace("-", "");
   b = b.replace("-", "");
 
+  // Initialize an array to hold the result
   const result = Array(a.length + b.length).fill(0);
 
+  // Perform the multiplication digit by digit
   for (let i = a.length - 1; i >= 0; i--) {
     for (let j = b.length - 1; j >= 0; j--) {
       const product =
         parseInt(a[i], 10) * parseInt(b[j], 10) + result[i + j + 1];
-      result[i + j + 1] = product % 10; // Place the remainder in the current position
-      result[i + j] += Math.floor(product / 10); // Carry over to the next position
+      result[i + j + 1] = product % 10; // Store the unit digit
+      result[i + j] += Math.floor(product / 10); // Carry over the rest
     }
   }
 
-  // Convert the result array to a string
-  let finalResult = result.join("").replace(/^0+/, ""); // Remove leading zeros
+  // Convert result array to string, remove leading zeros
+  let finalResult = result.join("").replace(/^0+/, "");
 
+  // If the result is negative, add the sign
   if (isNegative) finalResult = "-" + finalResult;
 
   return finalResult;
