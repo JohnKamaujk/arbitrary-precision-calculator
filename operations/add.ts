@@ -16,16 +16,17 @@ export function add(a: string, b: string): string {
     return "-" + add(a, b);
   }
 
-  // If one number is negative, treat it as subtraction
   if (isANegative || isBNegative) {
     if (isANegative) {
-      return subtract(b, a.slice(1)); // Treat subtracting negative a from positive b
+      //Subtract absolute value of a from b
+      return subtract(b, a.slice(1));
     } else {
-      return subtract(a, b.slice(1)); // Treat subtracting negative b from positive a
+      //Subtract absolute value of b from a
+      return subtract(a, b.slice(1));
     }
   }
 
-  // If both numbers are positive, perform normal addition
+  //Both positive, perform normal addition
   let carry = 0;
   let result: string[] = [];
   a = a.padStart(Math.max(a.length, b.length), "0");
