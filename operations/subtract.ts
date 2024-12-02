@@ -1,34 +1,31 @@
 import { add } from "./add";
 
 export function subtract(a: string, b: string): string {
-  // Handle negative numbers: Determine the sign of each number
   let isNegativeA = a.startsWith("-");
   let isNegativeB = b.startsWith("-");
 
-  // Remove leading negative sign for comparison and subtraction
   if (isNegativeA) a = a.slice(1);
   if (isNegativeB) b = b.slice(1);
 
   if (isNegativeA && isNegativeB) {
-    // Reverse the order and treat as a positive number operation, -a-(-b) == -a+b == b-a
+    // Reverse the order and treat as a positive number subtraction, -a-(-b) == -a+b == b-a
     return subtractPositive(b, a);
   }
 
   if (isNegativeA) {
-    // Add b to negative a on the left(-ve side) of the number line
+    // if a is -ve, then prepend -ve sign, will always move towards left side of number line
     return "-" + add(a, b);
   }
 
   if (isNegativeB) {
-    // Add +b to a on the right(+ve side) of the number line, a-(-b) equals a+b
+    // will always move towards right side of number line, a-(-b) == a+b
     return add(a, b);
   }
 
-  // Both numbers are positive, subtract directly
+  // Both positive, subtract directly
   return subtractPositive(a, b);
 }
 
-// Helper function for positive number subtraction (both a and b are positive)
 function subtractPositive(a: string, b: string): string {
   let isNegative = false;
   if (compare(a, b) < 0) {
@@ -70,7 +67,6 @@ function subtractPositive(a: string, b: string): string {
   return finalResult;
 }
 
-// Helper function to compare two arbitrary precision numbers
 function compare(a: string, b: string): number {
   // Remove leading zeros
   a = a.replace(/^0+/, "");
