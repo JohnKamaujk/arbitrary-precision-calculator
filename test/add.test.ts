@@ -1,4 +1,4 @@
-import { add } from "../operations/add"; // Adjust the path if necessary
+import { add } from "../operations/add";
 
 describe("Add function", () => {
   test("Adding two positive numbers", () => {
@@ -21,9 +21,15 @@ describe("Add function", () => {
     expect(add("0", "-123")).toBe("-123");
   });
 
-  test("Adding large numbers", () => {
+  test("Adding large positive numbers", () => {
     expect(add("12345678901234567890", "98765432109876543210")).toBe(
       "111111111011111111100"
+    );
+  });
+
+  test("Adding large negative numbers", () => {
+    expect(add("-12345678901234567890", "-98765432109876543210")).toBe(
+      "-111111111011111111100"
     );
   });
 
