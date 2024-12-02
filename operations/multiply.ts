@@ -1,5 +1,4 @@
 export function multiply(a: string, b: string): string {
-  // Remove leading zeros
   a = a.replace(/^0+/, "") || "0";
   b = b.replace(/^0+/, "") || "0";
 
@@ -12,10 +11,8 @@ export function multiply(a: string, b: string): string {
   a = a.replace("-", "");
   b = b.replace("-", "");
 
-  // Initialize an array to hold the result
   const result = Array(a.length + b.length).fill(0);
 
-  // Perform the multiplication digit by digit
   for (let i = a.length - 1; i >= 0; i--) {
     for (let j = b.length - 1; j >= 0; j--) {
       const product =
@@ -28,7 +25,6 @@ export function multiply(a: string, b: string): string {
   // Convert result array to string, remove leading zeros
   let finalResult = result.join("").replace(/^0+/, "");
 
-  // If the result is negative, add the sign
   if (isNegative) finalResult = "-" + finalResult;
 
   return finalResult;
