@@ -17,3 +17,5 @@ export function add(a: string, b: string): string {
 
   return result.reverse().join("");
 }
+
+add("0123", "012345")

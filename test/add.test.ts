@@ -13,3 +13,7 @@ test("adds large numbers correctly", () => {
 test("adds numbers with different lengths", () => {
   expect(add("123", "12345")).toBe("12468");
 });
+
+test("adds numbers with leading zeroes", () => {
+  expect(add("0123", "012345")).toBe("12468");
+});
