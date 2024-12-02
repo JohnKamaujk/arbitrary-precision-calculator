@@ -1,4 +1,8 @@
 export function add(a: string, b: string): string {
+  // Remove leading zeros
+  a = a.replace(/^0+/, "");
+  b = b.replace(/^0+/, "");
+  
   let carry = 0;
   let result: string[] = [];
 
