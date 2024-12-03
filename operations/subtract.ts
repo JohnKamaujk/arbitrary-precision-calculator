@@ -1,4 +1,5 @@
 import { add } from "./add";
+import { compareStrings } from "./compareStrings";
 
 export function subtract(a: string, b: string): string {
   let isNegativeA = a.startsWith("-");
@@ -27,8 +28,12 @@ export function subtract(a: string, b: string): string {
 }
 
 function subtractPositive(a: string, b: string): string {
+  // Remove leading zeros
+  a = a.replace(/^0+/, "");
+  b = b.replace(/^0+/, "");
+
   let isNegative = false;
-  if (compare(a, b) < 0) {
+  if (compareStrings(a, b) < 0) {
     isNegative = true;
     let temp = a;
     a = b;
@@ -65,22 +70,4 @@ function subtractPositive(a: string, b: string): string {
   }
 
   return finalResult;
-}
-
-function compare(a: string, b: string): number {
-  // Remove leading zeros
-  a = a.replace(/^0+/, "");
-  b = b.replace(/^0+/, "");
-
-  // Compare lengths
-  if (a.length < b.length) return -1;
-  if (a.length > b.length) return 1;
-
-  // Compare lexicographically
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] < b[i]) return -1;
-    if (a[i] > b[i]) return 1;
-  }
-
-  return 0;
 }
