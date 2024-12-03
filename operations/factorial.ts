@@ -2,8 +2,14 @@ import { compareStrings } from "./compareStrings";
 import { multiply } from "./multiply";
 
 export function factorial(n: string): string {
+  if (n[0] === "-") {
+    throw new Error("Factorial is not defined for negative numbers");
+  }
+
+  n = n.replace(/^0+/, "") || "0";
+
   if (n === "0" || n === "1") {
-    return "1"; // 0! and 1! are 1
+    return "1";
   }
 
   let result = "1"; // Start with 1 (factorial of 0 and 1)

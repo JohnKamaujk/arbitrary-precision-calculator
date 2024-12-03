@@ -2,8 +2,8 @@ import { subtract } from "./subtract";
 
 export function add(a: string, b: string): string {
   // Remove leading zeros from both numbers
-  a = a.replace(/^0+/, "");
-  b = b.replace(/^0+/, "");
+  a = a.replace(/^0+/, "") || "0";
+  b = b.replace(/^0+/, "") || "0";
 
   // Check for negative numbers
   const isANegative = a.startsWith("-");
