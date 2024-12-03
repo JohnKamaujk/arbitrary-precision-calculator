@@ -1,25 +1,31 @@
-import { compareStrings } from "./compareStrings";
 import { multiply } from "./multiply";
+import { divide } from "./divide";
+import { compareStrings } from "./compareStrings";
 
 export function exponential(base: string, exponent: string): string {
-  // Remove leading zeros from base and exponent
   base = base.replace(/^0+/, "") || "0";
   exponent = exponent.replace(/^0+/, "") || "0";
 
-  if (exponent === "0") {
-    return "1"; // Any number raised to the power of 0 is 1
+  const isNegativeExponent = exponent[0] === "-";
+  if (isNegativeExponent) {
+    exponent = exponent.slice(1); // Remove the negative sign
   }
 
-  if (base === "0") {
-    return "0"; // 0 raised to any positive power is 0
-  }
+  if (exponent === "0") return "1"; // Any number raised to the power of 0 is 1
 
-  let result = "1"; // Start with 1
-  let currentExponent = "0"; // Initialize current exponent to 0
+  if (base === "0") return "0"; // 0 raised to any positive power is 0
+
+  let result = "1";
+  let currentExponent = "0";
 
   while (compareStrings(currentExponent, exponent) < 0) {
-    result = multiply(result, base); // Multiply result by base
-    currentExponent = increment(currentExponent); // Increment exponent
+    result = multiply(result, base);
+    currentExponent = increment(currentExponent);
+  }
+
+  // Handle negative exponents
+  if (isNegativeExponent) {
+    result = divide("1", result); // Take the reciprocal of the result
   }
 
   return result;
@@ -47,4 +53,3 @@ function increment(num: string): string {
 
   return result;
 }
-
