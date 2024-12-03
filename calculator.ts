@@ -4,6 +4,7 @@ import { subtract } from "./operations/subtract";
 import { multiply } from "./operations/multiply";
 import { divide } from "./operations/divide";
 import { factorial } from "./operations/factorial";
+import { modulo } from "./operations/modulo";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -81,6 +82,11 @@ function processInput(input: string): string {
         throw new Error("Factorial operation requires exactly 1 argument.");
       }
       return factorial(args[0]);
+    case "modulo":
+      if (args.length !== 2) {
+        throw new Error("Modulo operation requires exactly 2 arguments.");
+      }
+      return modulo(args[0], args[1]);
     default:
       throw new Error(
         "Unknown command. Supported commands: add, subtract, multiply, etc."
