@@ -13,15 +13,22 @@ export function divide(
   const isNegative =
     (dividend[0] === "-" ? 1 : 0) + (divisor[0] === "-" ? 1 : 0) === 1;
 
-  // Remove leading 0s and negative sign if any
+  // Normalize inputs: remove leading zeros and handle signs
   const normalize = (num: string) => num.replace(/^0+/, "") || "0";
   dividend = normalize(dividend.replace("-", ""));
   divisor = normalize(divisor.replace("-", ""));
 
-  if (compareStrings(divisor, dividend) > 0) return "0";
+  if (divisor === "0") throw new Error("Division by zero is undefined");
+
+  if (dividend === "0") return "0";
+
+  if (compareStrings(divisor, dividend) > 0) {
+    // If divisor > dividend, result starts as fractional
+    dividend = "0".repeat(divisor.length - dividend.length) + dividend;
+  }
 
   let quotient = "";
-  let remainder = "";
+  let remainder = "0";
   let isFractional = false;
   let decimalPlaces = 0;
 
@@ -31,7 +38,7 @@ export function divide(
     i++
   ) {
     remainder += dividend[i] || "0";
-    remainder = remainder.replace(/^0+/, "");
+    remainder = remainder.replace(/^0+/, "") || "0";
 
     let count = 0;
     while (compareStrings(remainder, divisor) >= 0) {
@@ -41,15 +48,18 @@ export function divide(
 
     quotient += count.toString();
 
+    // Check for fractional part
     if (i >= dividend.length - 1 && remainder !== "0" && !isFractional) {
       isFractional = true;
       quotient += ".";
     }
 
-    if (isFractional) decimalPlaces++;
+    if (isFractional) {
+      decimalPlaces++;
+    }
   }
 
-  // Trim trailing zeroes in the fractional part
+  // Remove trailing zeroes from the fractional part
   if (quotient.includes(".")) {
     quotient = quotient.replace(/\.?0+$/, "");
   }

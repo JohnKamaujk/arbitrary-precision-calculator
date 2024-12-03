@@ -96,8 +96,8 @@ describe("Divide function", () => {
   });
 
   test("Dividing negative one by a number", () => {
-    expect(divide("-1", "123456")).toBe("0");
-    expect(divide("-1", "-123456")).toBe("0");
+    expect(divide("-1", "123456")).toBe("-.0000081");
+    expect(divide("-1", "-123456")).toBe(".0000081");
   });
 
   test("Dividing by a number with a result in fractions (truncated to integer)", () => {
