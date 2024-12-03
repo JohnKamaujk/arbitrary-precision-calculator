@@ -1,3 +1,4 @@
+import { compareStrings } from "./compareStrings";
 import { subtract } from "./subtract";
 
 export function divide(
@@ -55,21 +56,4 @@ export function divide(
 
   quotient = quotient.replace(/^0+/, "") || "0";
   return isNegative ? `-${quotient}` : quotient;
-}
-
-function compareStrings(a: string, b: string): number {
-  // Compare lengths first
-  if (a.length > b.length) return 1;
-  if (a.length < b.length) return -1;
-
-  // If lengths are equal, compare digit by digit
-  for (let i = 0; i < a.length; i++) {
-    const digitA = parseInt(a[i], 10);
-    const digitB = parseInt(b[i], 10);
-    if (digitA > digitB) return 1;
-    if (digitA < digitB) return -1;
-  }
-
-  // If all digits are equal, the numbers are the same
-  return 0;
 }
