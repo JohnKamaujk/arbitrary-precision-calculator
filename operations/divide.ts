@@ -12,7 +12,7 @@ export function divide(
   const isNegative =
     (dividend[0] === "-" ? 1 : 0) + (divisor[0] === "-" ? 1 : 0) === 1;
 
-  //remove leading 0s and negative sign if any
+  // Remove leading 0s and negative sign if any
   const normalize = (num: string) => num.replace(/^0+/, "") || "0";
   dividend = normalize(dividend.replace("-", ""));
   divisor = normalize(divisor.replace("-", ""));
@@ -46,6 +46,11 @@ export function divide(
     }
 
     if (isFractional) decimalPlaces++;
+  }
+
+  // Trim trailing zeroes in the fractional part
+  if (quotient.includes(".")) {
+    quotient = quotient.replace(/\.?0+$/, "");
   }
 
   quotient = quotient.replace(/^0+/, "") || "0";
