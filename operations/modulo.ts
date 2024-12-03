@@ -1,19 +1,19 @@
 import { subtract } from "./subtract";
 import { compareStrings } from "./compareStrings";
-import { multiply } from "./multiply";
 
 export function modulo(dividend: string, divisor: string): string {
+  const isNegativeDividend = dividend.startsWith("-");
+  const isNegativeDivisor = divisor.startsWith("-");
+
+  // Remove signs and leading zeros from both dividend and divisor
+  dividend = dividend.replace(/^0+/, "").replace("-", "") || "0";
+  divisor = divisor.replace(/^0+/, "").replace("-", "") || "0";
+
   if (divisor === "0") {
     throw new Error("Modulo by zero is undefined");
   }
 
-  // remove leading zeros
-  dividend = dividend.replace(/^0+/, "") || "0";
-  divisor = divisor.replace(/^0+/, "") || "0";
-
-  if (compareStrings(dividend, divisor) < 0) {
-    return dividend;
-  }
+  if (dividend === "0") return "0";
 
   let remainder = dividend;
 
@@ -21,6 +21,19 @@ export function modulo(dividend: string, divisor: string): string {
     remainder = subtract(remainder, divisor);
   }
 
-  return remainder;
-}
+  // Adjust sign of the remainder based on the divisor
+  if (isNegativeDivisor && isNegativeDividend && remainder !== "0") {
+    remainder = `-${remainder}`;
+  }
 
+  if (isNegativeDivisor && !isNegativeDividend && remainder !== "0") {
+    remainder = subtract(divisor, remainder);
+    remainder = `-${remainder}`;
+  }
+
+  if (isNegativeDividend && !isNegativeDivisor && remainder !== "0") {
+    remainder = subtract(divisor, remainder);
+  }
+
+  return remainder.replace(/^0+/, "") || "0";
+}
