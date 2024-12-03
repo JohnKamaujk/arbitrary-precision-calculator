@@ -1,3 +1,4 @@
+import { compareStrings } from "./compareStrings";
 import { multiply } from "./multiply";
 
 export function factorial(n: string): string {
@@ -15,21 +16,6 @@ export function factorial(n: string): string {
   }
 
   return result;
-}
-
-// Helper function to compare two strings representing large numbers
-function compareStrings(a: string, b: string): number {
-  if (a.length > b.length) return 1;
-  if (a.length < b.length) return -1;
-
-  for (let i = 0; i < a.length; i++) {
-    const digitA = parseInt(a[i], 10);
-    const digitB = parseInt(b[i], 10);
-    if (digitA > digitB) return 1;
-    if (digitA < digitB) return -1;
-  }
-
-  return 0; // Numbers are equal
 }
 
 // Helper function to increment a string-based number by 1
