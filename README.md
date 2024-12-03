@@ -57,7 +57,7 @@ Type commands in the REPL like:
 
 - Exponentiation:
     ```bash
-    power 2 100
+    exponential 2 100
     ```
 - Modulo:
     ```bash

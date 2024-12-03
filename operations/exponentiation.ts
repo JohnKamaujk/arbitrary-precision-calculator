@@ -2,7 +2,7 @@ import { multiply } from "./multiply";
 import { divide } from "./divide";
 import { compareStrings } from "./compareStrings";
 
-export function exponential(base: string, exponent: string): string {
+export function exponentiation(base: string, exponent: string): string {
   base = base.replace(/^0+/, "") || "0";
   exponent = exponent.replace(/^0+/, "") || "0";
 

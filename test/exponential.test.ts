@@ -1,4 +1,4 @@
-import { exponential } from "../operations/exponential";
+import { exponential } from "../operations/exponentiation";
 
 describe("Exponential Function", () => {
   it("should handle small positive integer exponents", () => {
