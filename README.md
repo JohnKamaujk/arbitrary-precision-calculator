@@ -49,6 +49,10 @@ Type commands in the REPL like:
     ``` bash
     multiply 12345 6789
     ```
+- Divide:
+    ``` bash
+    divide 6789876 1234
+    ```
 
 - Factorial:
     ```bash
@@ -57,7 +61,7 @@ Type commands in the REPL like:
 
 - Exponentiation:
     ```bash
-    exponential 2 100
+    exponentiation 2 100
     ```
 - Modulo:
     ```bash
