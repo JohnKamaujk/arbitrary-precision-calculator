@@ -22,11 +22,15 @@ An interactive, arbitrary-precision integer calculator built in JavaScript. This
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/arbitrary-precision-calculator.git
+   git clone https://github.com/JohnKamaujk/arbitrary-precision-calculator.git
    ```
+2. cd into the folder arbitrary-precision-calculator and install dependencies:
+    ```bash
+    npm install
+    ```
 2. Run the REPL:
     ```bash
-    node calculator.js
+    npm run start
     ```
 ### Usage
 Type commands in the REPL like:
@@ -54,6 +58,10 @@ Type commands in the REPL like:
 - Exponentiation:
     ```bash
     power 2 100
+    ```
+- Modulo:
+    ```bash
+    modulo 100 9
     ```
 
 ### How It Works
